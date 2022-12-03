@@ -1,0 +1,13 @@
+ban:
+  success: '&aYou have banned {player_name} from the server.'
+  failure: '&cAn error occurred while trying to ban the player.'
+  template:
+    - "&8&l---------------------------------"
+    - " "
+    - " You have been banned from the server."
+    - " "
+    - " &8» &7Reason: &c{reason}"
+    - " &8» &7Banned by: &c{banned_by}"
+    - " &8» &7Banned until: &c{until}"
+    - " "
+    - "&8&l---------------------------------"

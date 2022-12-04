@@ -11,6 +11,7 @@ repositories {
 dependencies {
     implementation(project(":api"))
     implementation(libs.inject.trew)
+    implementation(libs.mongo.sync)
     implementation(libs.nmessage)
     implementation(libs.nmessage.yaml)
     compileOnly(libs.spigot) {

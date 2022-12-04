@@ -14,7 +14,7 @@ public class SimplePunishment
 	private final String actorName;
 	private final Duration duration;
 
-	private SimplePunishment(
+	public SimplePunishment(
 			final String id,
 			final UUID userId,
 			final String reason,

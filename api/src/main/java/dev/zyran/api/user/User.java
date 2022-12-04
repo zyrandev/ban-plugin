@@ -12,7 +12,5 @@ public interface User {
 		return Bukkit.getPlayer(getId());
 	}
 
-	boolean isMuted();
-
 	String getCurrentBanId();
 }

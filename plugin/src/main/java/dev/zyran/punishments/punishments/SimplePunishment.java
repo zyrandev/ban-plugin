@@ -1,9 +1,10 @@
-package dev.zyran.bans.punishments;
+package dev.zyran.punishments.punishments;
 
 import dev.zyran.api.punishment.Punishment;
 
 import java.time.Duration;
 import java.util.UUID;
+
 public class SimplePunishment
 		implements Punishment {
 
@@ -13,6 +14,7 @@ public class SimplePunishment
 	private final UUID actorId;
 	private final String actorName;
 	private final Duration duration;
+	private final long createdAt;
 
 	public SimplePunishment(
 			final String id,
@@ -20,7 +22,8 @@ public class SimplePunishment
 			final String reason,
 			final UUID actorId,
 			final String actorName,
-			final Duration duration
+			final Duration duration,
+			long createdAt
 	) {
 		this.id = id;
 		this.userId = userId;
@@ -28,10 +31,14 @@ public class SimplePunishment
 		this.actorId = actorId;
 		this.actorName = actorName;
 		this.duration = duration;
+		this.createdAt = createdAt;
 	}
 
-	public SimplePunishment(final UUID userId, final String reason, final UUID actorId, final Duration duration) {
-		this(null, userId, reason, actorId, null, duration);
+	public SimplePunishment(
+			final UUID userId, final String reason, final UUID actorId,
+			String actorName, final Duration duration
+	) {
+		this(null, userId, reason, actorId, actorName, duration, System.currentTimeMillis());
 	}
 
 	@Override
@@ -69,5 +76,10 @@ public class SimplePunishment
 	@Override
 	public Duration getDuration() {
 		return duration;
+	}
+
+	@Override
+	public Long getCreatedAt() {
+		return createdAt;
 	}
 }

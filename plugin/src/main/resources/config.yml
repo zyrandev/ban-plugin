@@ -1,0 +1,4 @@
+storage:
+  thread-pool-size: 3
+  mongo-uri: "mongodb://localhost:27017"
+  database: punishments

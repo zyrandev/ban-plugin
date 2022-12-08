@@ -11,7 +11,7 @@ commandflow = "0.5.2"
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
 spigot = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigot" }
 
-commandflow-bukkit ={group="me.fixeddev", name="commandflow-bukkit", version.ref="commandflow"}
+commandflow-bukkit = { group = "me.fixeddev", name = "commandflow-bukkit", version.ref = "commandflow" }
 nmessage = { group = "me.yushust.message", name = "core", version.ref = "nmessage" }
 nmessage-yaml = { group = "me.yushust.message", name = "sourcetype-bukkit-yml", version.ref = "nmessage" }
 inject-trew = { group = "team.unnamed", name = "inject", version.ref = "trew" }

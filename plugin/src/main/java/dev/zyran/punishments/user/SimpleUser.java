@@ -1,8 +1,9 @@
-package dev.zyran.bans.user;
+package dev.zyran.punishments.user;
 
 import dev.zyran.api.user.User;
 
 import java.util.UUID;
+
 public class SimpleUser
 		implements User {
 
@@ -21,12 +22,12 @@ public class SimpleUser
 		return id;
 	}
 
-	private void setCurrentBanId(final String currentBanId) {
-		this.currentBanId = currentBanId;
-	}
-
 	@Override
 	public String getCurrentBanId() {
 		return currentBanId;
+	}
+
+	private void setCurrentBanId(final String currentBanId) {
+		this.currentBanId = currentBanId;
 	}
 }

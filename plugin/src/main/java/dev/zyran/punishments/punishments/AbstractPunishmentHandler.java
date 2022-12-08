@@ -1,4 +1,4 @@
-package dev.zyran.bans.punishments;
+package dev.zyran.punishments.punishments;
 
 import dev.zyran.api.punishment.Punishment;
 import dev.zyran.api.punishment.PunishmentHandler;
@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import java.time.Duration;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+
 public abstract class AbstractPunishmentHandler
 		implements PunishmentHandler {
 
@@ -17,9 +18,10 @@ public abstract class AbstractPunishmentHandler
 			@NotNull final UUID userId,
 			@Nullable final String reason,
 			@NotNull final UUID actorId,
+			@NotNull String actorName,
 			@Nullable final Duration duration
 	) {
-		return save(new SimplePunishment(userId, reason, actorId, duration))
+		return save(new SimplePunishment(userId, reason, actorId, actorName, duration))
 				       .thenApplyAsync(punishment -> {
 					       execute(punishment);
 					       return punishment;
@@ -32,11 +34,12 @@ public abstract class AbstractPunishmentHandler
 			@NotNull final UUID userId,
 			@Nullable final String reason,
 			@NotNull final UUID actorId,
+			@NotNull String actorName,
 			@Nullable final Duration duration,
 			boolean silent
 	) {
 
-		return execute(userId, reason, actorId, duration)
+		return execute(userId, reason, actorId, actorName, duration)
 				       .whenComplete((punishment, throwable) -> {
 					       if (throwable != null) {
 						       sendFailureMessage(sender, throwable);

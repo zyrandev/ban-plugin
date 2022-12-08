@@ -1,8 +1,8 @@
-package dev.zyran.bans.listeners;
+package dev.zyran.punishments.listeners;
 
 import dev.zyran.api.punishment.Punishment;
 import dev.zyran.api.storage.Storage;
-import dev.zyran.bans.punishments.ban.BanHandler;
+import dev.zyran.punishments.punishments.ban.BanHandler;
 import me.yushust.message.MessageHandler;
 import me.yushust.message.util.StringList;
 import org.bukkit.event.EventHandler;
@@ -11,7 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 import javax.inject.Inject;
+import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
+
 public class ConnectionListener
 		implements Listener {
 
@@ -29,8 +31,21 @@ public class ConnectionListener
 					                              return CompletableFuture.completedFuture(null);
 				                              }).join();
 		if (punishment != null) {
-			StringList message = messageHandler.getMany(null, BanHandler.MESSAGE_TEMPLATE_PATH, punishment);
-			event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, message.join("\n"));
+			if (punishment.getDuration() == null) {
+				disallowConnection(event, punishment);
+				return;
+			}
+			Instant now = Instant.now();
+			Instant expiration = Instant.ofEpochMilli(punishment.getCreatedAt())
+					                     .plus(punishment.getDuration());
+			if (now.isBefore(expiration)) {
+				disallowConnection(event, punishment);
+			}
 		}
+	}
+
+	private void disallowConnection(AsyncPlayerPreLoginEvent event, Punishment punishment) {
+		StringList message = messageHandler.getMany(null, BanHandler.MESSAGE_TEMPLATE_PATH, punishment);
+		event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, message.join("\n"));
 	}
 }

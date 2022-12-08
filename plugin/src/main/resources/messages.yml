@@ -1,5 +1,5 @@
 ban:
-  success: '&aYou have banned {player_name} from the server.'
+  success: '&aYou have banned the player from the server.'
   failure: '&cAn error occurred while trying to ban the player.'
   broadcast: '&a{player_name} has been banned from the server.'
   template:
@@ -7,8 +7,13 @@ ban:
     - " "
     - " You have been banned from the server."
     - " "
-    - " &8» &7Reason: &c{reason}"
-    - " &8» &7Banned by: &c{banned_by}"
-    - " &8» &7Banned until: &c{until}"
+    - " &8» &7Reason: &c{punishment_reason}"
+    - " &8» &7Banned by: &c{punishment_staff_name}"
+    - " &8» &7Banned until: &c{punishment_until}"
     - " "
     - "&8&l---------------------------------"
+
+commands:
+  unban:
+    failure: '&cAn error occurred while trying to unban the player.'
+    success: '&aYou have unbanned the player from the server.'

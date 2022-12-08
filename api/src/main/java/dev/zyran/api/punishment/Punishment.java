@@ -1,7 +1,9 @@
 package dev.zyran.api.punishment;
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.UUID;
+
 public interface Punishment {
 
 	String getId();
@@ -15,4 +17,6 @@ public interface Punishment {
 	String getActorName();
 
 	Duration getDuration();
+
+	Long getCreatedAt();
 }

@@ -7,12 +7,14 @@ import org.jetbrains.annotations.Nullable;
 import java.time.Duration;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+
 public interface PunishmentHandler {
 
 	CompletableFuture<Punishment> execute(
 			@NotNull UUID userId,
 			@Nullable String reason,
 			@NotNull UUID actorId,
+			@NotNull String actorName,
 			@Nullable Duration duration
 	);
 
@@ -21,6 +23,7 @@ public interface PunishmentHandler {
 			@NotNull UUID userId,
 			@Nullable String reason,
 			@NotNull UUID actorId,
+			@NotNull String actorName,
 			@Nullable Duration duration,
 			boolean silent
 	);

@@ -1,6 +1,7 @@
 ban:
   success: '&aYou have banned {player_name} from the server.'
   failure: '&cAn error occurred while trying to ban the player.'
+  broadcast: '&a{player_name} has been banned from the server.'
   template:
     - "&8&l---------------------------------"
     - " "

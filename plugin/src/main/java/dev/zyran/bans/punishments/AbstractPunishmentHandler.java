@@ -32,17 +32,24 @@ public abstract class AbstractPunishmentHandler
 			@NotNull final UUID userId,
 			@Nullable final String reason,
 			@NotNull final UUID actorId,
-			@Nullable final Duration duration
+			@Nullable final Duration duration,
+			boolean silent
 	) {
+
 		return execute(userId, reason, actorId, duration)
 				       .whenComplete((punishment, throwable) -> {
 					       if (throwable != null) {
 						       sendFailureMessage(sender, throwable);
 						       return;
 					       }
+					       if (!silent) {
+						       broadcastPunishment(punishment);
+					       }
 					       sendSuccessMessage(sender, punishment);
 				       });
 	}
+
+	protected abstract void broadcastPunishment(@NotNull Punishment punishment);
 
 	protected abstract void execute(final @NotNull Punishment punishment);
 	protected abstract CompletableFuture<Punishment> save(@NotNull Punishment punishment);

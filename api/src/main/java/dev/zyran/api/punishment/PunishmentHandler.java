@@ -21,6 +21,7 @@ public interface PunishmentHandler {
 			@NotNull UUID userId,
 			@Nullable String reason,
 			@NotNull UUID actorId,
-			@Nullable Duration duration
+			@Nullable Duration duration,
+			boolean silent
 	);
 }

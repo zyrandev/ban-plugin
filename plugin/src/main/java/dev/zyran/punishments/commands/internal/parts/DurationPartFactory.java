@@ -23,7 +23,8 @@ public class DurationPartFactory
 			}
 
 			@Override
-			public void parse(final CommandContext context, final ArgumentStack stack,
+			public void parse(final CommandContext context, 
+					  final ArgumentStack stack,
 							  @Nullable final CommandPart caller)
 					throws ArgumentParseException {
 				final String argument = stack.next();
